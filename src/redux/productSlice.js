@@ -1,6 +1,6 @@
 // src/store/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteProduct, getAllProduct, updateProduct } from "./thunk/product";
+import { addProduct, deleteProduct, getAllProduct, updateProduct } from "./thunk/product";
 
 // Tạo một slice cho việc quản lý state auth
 const productSlice = createSlice({
@@ -13,6 +13,8 @@ const productSlice = createSlice({
     statusDelete: "idle",
     errUpdate: null,
     statusUpdate: "idle",
+    errAddProduct: null,
+    statusAddProduct: "idle",
   },
   reducers: {
     resetState: (state) => {
@@ -22,10 +24,13 @@ const productSlice = createSlice({
       state.statusDelete = "idle";
       state.errUpdate = null;
       state.statusUpdate = "idle";
+      state.errAddProduct = null;
+      state.statusAddProduct = "idle";
     },
   },
   extraReducers: (builder) => {
     builder
+    //Action nhận tất cả product
       .addCase(getAllProduct.pending, (state) => {
         state.status = "loading";
         state.err = null;
@@ -39,6 +44,7 @@ const productSlice = createSlice({
         state.status = "failed";
         state.err = action.payload;
       })
+      //Action xóa 1 product
       .addCase(deleteProduct.pending, (state) => {
         state.statusDelete = "loading";
         state.errDelete = null;
@@ -51,6 +57,7 @@ const productSlice = createSlice({
         state.statusDelete = "failed";
         state.errDelete = action.payload;
       })
+      //Action cập nhật product
       .addCase(updateProduct.pending, (state) => {
         state.statusUpdate = "loading";
         state.errUpdate = null;
@@ -62,7 +69,20 @@ const productSlice = createSlice({
       .addCase(updateProduct.rejected, (state, action) => {
         state.statusUpdate = "failed";
         state.errUpdate = action.payload;
-      });
+      })
+      //Action cập nhật product
+      .addCase(addProduct.pending, (state) => {
+        state.statusAddProduct = "loading";
+        state.errAddProduct = null;
+      })
+      .addCase(addProduct.fulfilled, (state) => {
+        state.statusAddProduct = "successful";
+        state.errAddProduct = null;
+      })
+      .addCase(addProduct.rejected, (state, action) => {
+        state.statusAddProduct = "failed";
+        state.errAddProduct = action.payload;
+      })
   },
 });
 

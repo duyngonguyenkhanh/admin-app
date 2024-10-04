@@ -84,4 +84,32 @@ export const deleteProduct = createAsyncThunk(
       }
     }
   );
+
+  export const addProduct = createAsyncThunk(
+    "product/addProduct",
+    async ( payload , { rejectWithValue }) => { // Sử dụng destructuring để lấy id và payload
+  
+      try {
+        const response = await fetch(`http://localhost:5000/admin/addproduct`, {
+          method: "POST", // Thay đổi thành PUT để cập nhật sản phẩm
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // Đảm bảo cookie được gửi kèm yêu cầu
+          body: JSON.stringify(payload),
+        });
+  
+        // Kiểm tra nếu response không thành công
+        if (!response.ok) {
+          const errorData = await response.json();
+          return rejectWithValue(errorData);
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        // Bắt lỗi bất ngờ (network errors, etc.)
+        return rejectWithValue(error.message);
+      }
+    }
+  );
   

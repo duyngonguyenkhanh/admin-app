@@ -10,4 +10,6 @@ export default defineConfig({
   server: {
     port: 3001, // Thay 3000 bằng số cổng bạn muốn sử dụng
   },
+  base: '/admin-app/', 
 })
+
