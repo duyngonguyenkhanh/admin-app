@@ -90,7 +90,7 @@ export const deleteProduct = createAsyncThunk(
     async ( payload , { rejectWithValue }) => { // Sử dụng destructuring để lấy id và payload
   
       try {
-        const response = await fetch(`http://localhost:5000/admin/addproduct`, {
+        const response = await fetch(`${apiUrl}/admin/addproduct`, {
           method: "POST", // Thay đổi thành PUT để cập nhật sản phẩm
           headers: {
             "Content-Type": "application/json",
