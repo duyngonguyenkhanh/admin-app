@@ -30,3 +30,13 @@ To install and run the project on your local machine, follow these steps:
    ```bash
    git clone https://github.com/duyngonguyenkhanh/admin-app.git
    cd admin-app
+
+## Account Addmin
+
+ username: admin@admin.com
+ password: admin
+
+## Account advisor
+
+username: advisor@gmail.com
+password: 123456789
