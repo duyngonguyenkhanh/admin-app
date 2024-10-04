@@ -18,9 +18,9 @@ const Narbar = () => {
   return (
     <div className="flex justify-between border rounded-md w-[90%] bg-white">
       <div
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/admin-app/")}
         className={`flex justify-center items-center mx-4 ${
-          location.pathname === "/" ? "text-yellow-500" : ""
+          location.pathname === "/admin-app/" ? "text-yellow-500" : ""
         }`}
       >
         <h1 className="mr-2">Dashboard</h1>
@@ -31,9 +31,9 @@ const Narbar = () => {
         />
       </div>
       <div
-        onClick={() => navigate("/products")}
+        onClick={() => navigate("/admin-app/products")}
         className={`flex justify-center items-center mx-4 ${
-          location.pathname === "/products" ? "text-yellow-500" : ""
+          location.pathname === "/admin-app/products" ? "text-yellow-500" : ""
         }`}
       >
         <h1 className="mr-2">Product</h1>
@@ -54,10 +54,10 @@ const Narbar = () => {
       </div>
       <div
         onClick={() => {
-          navigate("/chat");
+          navigate("/admin-app/chat");
         }}
         className={`flex justify-center items-center mx-4 ${
-          location.pathname === "/chat" ? "text-yellow-500" : ""
+          location.pathname === "/admin-app/chat" ? "text-yellow-500" : ""
         }`}
       >
         <h1 className="mr-2">Chats</h1>
@@ -102,9 +102,9 @@ const Narbar = () => {
       ) : (
         <div
           onClick={() => {
-            navigate("/login");
+            navigate("/admin-app/login");
           }}
-          className={`flex justify-center items-center mx-4 ${location.pathname === "/login" ? "text-yellow-500" : ""}`}
+          className={`flex justify-center items-center mx-4 ${location.pathname === "/admin-app/login" ? "text-yellow-500" : ""}`}
         >
           <h1 className="mr-2">Login</h1>
           <svg

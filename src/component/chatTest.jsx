@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import io from "socket.io-client";
 
 let socket;
@@ -9,7 +10,7 @@ const ChatRoom = () => {
   const [messages, setMessages] = useState([]); // Tin nhắn trong phòng
   const [input, setInput] = useState(""); // Tin nhắn hiện tại
   const [allMessages, setAllMessages] = useState({}); // Lưu trữ tin nhắn theo từng phòng
-
+  const { adminUser } = useSelector((state) => state.auth);
   // Kết nối với server và nhận danh sách phòng
   useEffect(() => {
     // Kết nối tới server
@@ -66,8 +67,17 @@ const ChatRoom = () => {
     }
   };
 
+  // Kiểm tra xem adminUser có tồn tại hay không
+  if (!adminUser) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-xl">Bạn cần đăng nhập để truy cập trang này.</h1>
+      </div>
+    );
+  }
+
   return (
-    <div className="">
+    <div className="mb-[100px]">
       <p className="mx-[5%] text-xl font-bold">Chat</p>
       <p className="mx-[5%] my-[1%] text-gray-400">Apps / Chat</p>
       <div className="flex mx-[5%] border rounded-lg shadow-lg bg-white">
@@ -82,7 +92,11 @@ const ChatRoom = () => {
           <ul>
             {rooms.length > 0 ? (
               rooms.map((room) => (
-                <li className="flex border" key={room} onClick={() => joinRoom(room)}>
+                <li
+                  className="flex border"
+                  key={room}
+                  onClick={() => joinRoom(room)}
+                >
                   <p className="font-bold mr-2">Client</p> {room}
                 </li>
               ))
@@ -92,17 +106,24 @@ const ChatRoom = () => {
           </ul>
         </div>
         <div className="w-[70%]">
-        {currentRoom && (
+          {currentRoom && (
             <div className="h-full">
               <div className="h-[90%] overflow-y-auto p-4">
                 {messages.map((msg, index) => (
-                  <div key={index} className={`mb-2 ${msg.userId === "admin" ? "text-right" : "text-left"}`}>
+                  <div
+                    key={index}
+                    className={`mb-2 ${
+                      msg.userId === "admin" ? "text-right" : "text-left"
+                    }`}
+                  >
                     <div
                       className={`inline-block p-2 rounded-lg ${
                         msg.userId === "admin" ? "bg-blue-200" : "bg-gray-200"
                       }`}
                     >
-                      <strong>{msg.userId === "admin" ? "You" : "Client"}: </strong>
+                      <strong>
+                        {msg.userId === "admin" ? "You" : "Client"}:{" "}
+                      </strong>
                       {msg.message}
                     </div>
                   </div>
@@ -115,7 +136,12 @@ const ChatRoom = () => {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Nhập tin nhắn..."
                 />
-                <img className="size-10" src="https://img.icons8.com/?size=100&id=oWiuH0jFiU0R&format=png&color=000000" onClick={sendMessage} alt="" />
+                <img
+                  className="size-10"
+                  src="https://img.icons8.com/?size=100&id=oWiuH0jFiU0R&format=png&color=000000"
+                  onClick={sendMessage}
+                  alt=""
+                />
               </div>
             </div>
           )}

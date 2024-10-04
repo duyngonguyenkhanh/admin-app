@@ -23,7 +23,7 @@ const Login = () => {
   useEffect(() => {
     if (prevStatus.current !== "successful" && status === "successful") {
       // Chỉ chuyển hướng khi trạng thái thay đổi từ "loading" sang "successful"
-      navigate("/");
+      navigate("/admin-app/");
       dispatch(resetState()); // Reset state sau khi chuyển hướng
     }
     prevStatus.current = status; // Cập nhật trạng thái trước đó

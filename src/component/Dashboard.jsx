@@ -5,9 +5,8 @@ import OrderDetailModal from "./OrderDetailModal ";
 
 const Dashboard = () => {
   const { order } = useSelector((state) => state.order);
-  const { adminUser, err } = useSelector((state) => state.auth);
-  console.log(err);
-  
+  const { adminUser } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
