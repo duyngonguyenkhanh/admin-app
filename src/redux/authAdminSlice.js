@@ -53,7 +53,6 @@ const authAdminSlice = createSlice({
       .addCase(LoginAdmin.fulfilled, (state, action) => {
         state.status = "successful";
         state.res = action.payload;
-        state.err = null
         // Lưu token vào localStorage
         const token = action.payload.token;
         localStorage.setItem("token", token);

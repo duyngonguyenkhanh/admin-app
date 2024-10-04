@@ -5,7 +5,9 @@ import OrderDetailModal from "./OrderDetailModal ";
 
 const Dashboard = () => {
   const { order } = useSelector((state) => state.order);
-  const { adminUser } = useSelector((state) => state.auth);
+  const { adminUser, err } = useSelector((state) => state.auth);
+  console.log(err);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Dashboard = () => {
   const totalRevenue = orders.reduce((total, order) => {
     return total + order.products.reduce((subTotal, item) => subTotal + item.product.price * item.quantity, 0);
   }, 0);
-
+  
    // Kiểm tra xem adminUser có tồn tại hay không
    if (!adminUser) {
     return (

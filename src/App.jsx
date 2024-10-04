@@ -7,17 +7,17 @@ import Narbar from "./layout/Narbar";
 import ChatRoom from "./component/chatTest";
 function App() {
   const routesConfig = [
-    { path: "/", element: <Dashboard /> },
-    { path: "/products", element: <Products /> },
-    { path: "/signup", element: <Signup /> },
-    { path: "/login", element: <Login /> },
-    { path: "/chat", element: <ChatRoom /> },
+    { path: "/admin-app", element: <Dashboard /> },
+    { path: "/admin-app/products", element: <Products /> },
+    { path: "/admin-app/signup", element: <Signup /> },
+    { path: "/admin-app/login", element: <Login /> },
+    { path: "/admin-app/chat", element: <ChatRoom /> },
     // Thêm các route khác vào đây...
   ];
 
   return (
     <>
-        <Routes>
+        <Routes basename="/admin-app/">
           {routesConfig.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
