@@ -67,6 +67,16 @@ const EditModal = ({ isOpen, onClose, product }) => {
           />
         </label>
         <label className="block mb-2">
+          Quantity:
+          <input
+            type="number"
+            name="quantity"
+            value={editProduct?.quantity || ""}
+            onChange={handleEditChange}
+            className="mt-1 block w-full border border-gray-300 rounded p-2"
+          />
+        </label>
+        <label className="block mb-2">
           Long Decription:
           <textarea
             type="text"

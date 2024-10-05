@@ -96,6 +96,7 @@ const Products = () => {
       img2: img2 || "undefine", // Nếu không có ảnh nào khác, giữ trống
       img3: img3 || "undefine",
       img4: img4 || "undefine",
+      quantiy: 0,
     };
     
    // console.log(productData);

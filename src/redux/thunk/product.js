@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
  const apiUrl = import.meta.env.VITE_API_URL;
-//const apiUrl = "http://localhost:5000";
+//const apiUrl = "  ";
 
 export const getAllProduct = createAsyncThunk(
     "auth/getAllProduct",
