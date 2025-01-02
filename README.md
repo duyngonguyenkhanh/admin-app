@@ -19,7 +19,6 @@ You can access the website [here](https://duyngonguyenkhanh.github.io/admin-app/
 - **React**: Main framework for building the user interface.
 - **React Router**: Used for routing within the application.
 - **Tailwind CSS**: Used for styling the website with utility-first CSS.
-- **Vanilla CSS**: Used for additional custom styles.
 
 ## Installation and Running the Project
 
